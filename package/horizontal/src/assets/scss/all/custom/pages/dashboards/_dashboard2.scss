@@ -1,0 +1,19 @@
+.stylish-table {
+  tbody tr {
+    border-left: 4px solid transparent;
+    &:hover,
+    &.active {
+      border-left: 4px solid $themecolor;
+    }
+  }
+  tbody td {
+    vertical-align: middle;
+    padding: 0.75rem;
+    h6 {
+      white-space: nowrap;
+    }
+    small {
+      white-space: nowrap;
+    }
+  }
+}

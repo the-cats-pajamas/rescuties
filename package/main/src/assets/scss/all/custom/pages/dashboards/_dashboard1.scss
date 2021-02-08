@@ -1,0 +1,41 @@
+/*Blog widgets*/
+
+.blog-widget {
+  margin-top: 30px;
+  .blog-image img {
+    border-radius: 4px;
+    margin-top: -45px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/*For profile card widget*/
+.little-profile {
+  .pro-img {
+    margin-top: -80px;
+    margin-bottom: 20px;
+    img {
+      width: 128px;
+      height: 128px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 100%;
+    }
+  }
+}
+.apexcharts-xaxis line{
+  stroke:rgba(0,0,0,0.1);
+}
+.apexcharts-xaxis text, .apexcharts-yaxis text{
+  fill:#8898aa!important;
+}
+//Contact Button margin
+.add-ct-btn {
+  position: absolute;
+  right: 4px;
+  top: -46px;
+}
+
+.fill-color {
+  fill: currentColor !important;
+}
