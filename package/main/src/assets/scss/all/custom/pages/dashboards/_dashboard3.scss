@@ -1,0 +1,27 @@
+.earningsbox {
+  .c3-line {
+    stroke-width: 2px;
+  }
+}
+
+.product-sales {
+  &.c3 line,
+  &.c3 path {
+    stroke: $gray-200;
+  }
+  .c3-shape {
+    stroke: transparent !important;
+    stroke-width: 3px;
+  }
+}
+
+.feeds {
+  .content {
+    &:hover {
+      background: $gray-100;
+    }
+    .content-text {
+      max-width: 170px;
+    }
+  }
+}
