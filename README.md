@@ -19,5 +19,5 @@
 ![Entity Relationship Diagram](ReadmeAssets/entity-rel-diagram.jpg)
 
 #### Wireframes
-![]()
-![]()
+![wireframe](ReadmeAssets/wireframe_1.png)
+![wireframe](ReadmeAssets/wireframe_2.png)
