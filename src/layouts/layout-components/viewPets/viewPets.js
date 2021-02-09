@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux'
+import {get} from '../../../redux/settings/reducers/animal-reducer'
+
 import {
     Card,
     CardImg,
@@ -27,7 +30,14 @@ import img5 from './img5.jpg';
 import img6 from './img6.jpg';
 import img7 from './img5bg.jpg';
 
-const Cards = () => {
+const mapDispatchToProps = {get} 
+
+const Cards = (props) => {
+console.log(props);
+    useEffect(() => {
+        props.get();
+      }, []);
+
     return (
         <div>
             {/* --------------------------------------------------------------------------------*/}
@@ -516,6 +526,7 @@ const Cards = () => {
     );
 }
 
-export default Cards;
-
-
+const mapStateToProps = state => ({
+    animals: state.animals,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);
