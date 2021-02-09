@@ -32,6 +32,8 @@ import logolighticon from "../../../assets/images/logo-light-icon.png";
 import logodarktext from "../../../assets/images/logo-text.png";
 import logolighttext from "../../../assets/images/logo-light-text.png";
 import profilephoto from "../../../assets/images/users/1.jpg";
+import rescuties from '../../../assets/logos/rescuties.png'
+import title from '../../../assets/logos/title.png'
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -100,12 +102,12 @@ export default () => {
           {/*--------------------------------------------------------------------------------*/}
           <NavbarBrand href="/">
             <b className="logo-icon">
-              <img src={logodarkicon} alt="homepage" className="dark-logo" />
-              <img src={logolighticon} alt="homepage" className="light-logo" />
+              <img src={rescuties} style={{width:'75px'}} alt="homepage" className="dark-logo" />
+              <img src={rescuties} style={{width:'75px'}} alt="homepage" className="light-logo" />
             </b>
             <span className="logo-text">
-              <img src={logodarktext} alt="homepage" className="dark-logo" />
-              <img src={logolighttext} className="light-logo" alt="homepage" />
+              <img src={title} style={{width:'150px'}} alt="homepage" className="dark-logo" />
+              <img src={title} style={{width:'150px'}} className="light-logo" alt="homepage" />
             </span>
           </NavbarBrand>
           {/*--------------------------------------------------------------------------------*/}

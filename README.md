@@ -11,3 +11,13 @@
     - standard users are prospective pet owners 
     - admin users are shelters/rescues that can post pet profiles 
 - incorporate in the petfinder API as well 
+
+#### Domain Model
+![Domain Model](ReadmeAssets/domainModel.jpg)
+
+#### Entity Relationship Diagram
+![Entity Relationship Diagram](ReadmeAssets/entity-rel-diagram.jpg)
+
+#### Wireframes
+![wireframe](ReadmeAssets/wireframe_1.png)
+![wireframe](ReadmeAssets/wireframe_2.png)
