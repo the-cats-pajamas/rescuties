@@ -13,7 +13,8 @@ const App = () => {
     <Provider store={configureStore()}>
       <Router history={History}>
         <Switch>
-          <Route exact path="/authentication/Login" component={FullLayout} />;
+          <Route exact path="/" component={FullLayout} />;
+          {/* <Route exact path="/authentication/Login" component={FullLayout} />; */}
           {indexRoutes.map((prop, key) => {
             return (
               <PrivateRoute
