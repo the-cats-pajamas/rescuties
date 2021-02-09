@@ -24,7 +24,7 @@
     "axios": "^0.21.1",
     "chart.js": "2.7.2",
     "chroma-js": "^1.4.1",
-    "firebase": "^5.7.2",
+    "firebase": "^5.11.1",
     "formik": "^1.5.8",
     "handlebars": "^4.7.6",
     "history": "4.7.2",
