@@ -33,7 +33,9 @@ import img7 from './img5bg.jpg';
 const mapDispatchToProps = {get} 
 
 const Cards = (props) => {
-console.log(props);
+    console.log('Here are ALL the props', props);
+    console.log('Here are the props from the animal reducer:', props.animals);
+
     useEffect(() => {
         props.get();
       }, []);
