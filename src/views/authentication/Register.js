@@ -86,7 +86,7 @@ const Register2 = (props) => {
             setEmail(email1);
             setPassword(password1);
             setUsername(username1);
-            props.history.push("/authentication/login2");
+            props.history.push("/authentication/login");
           })
           .catch((error) => {
             alert("Something went wrong!");
