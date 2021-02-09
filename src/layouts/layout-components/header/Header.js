@@ -299,7 +299,7 @@ export default () => {
             {/*--------------------------------------------------------------------------------*/}
             {/* Start Create New Dropdown                                                      */}
             {/*--------------------------------------------------------------------------------*/}
-            <UncontrolledDropdown nav inNavbar>
+            {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav>
                 <span className="d-none d-lg-block font-16">
                   Create New <i className="fa fa-angle-down" />
@@ -314,7 +314,7 @@ export default () => {
                 <DropdownItem divider />
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown> */}
             {/*--------------------------------------------------------------------------------*/}
             {/* End Create New Dropdown                                                        */}
             {/*--------------------------------------------------------------------------------*/}
@@ -338,8 +338,8 @@ export default () => {
                   </div>
                 </div>
                 <div className="message-center notifications">
-                  {/*<!-- Message -->*/}
-                  {data.notifications.map((notification, index) => {
+           {/*<!-- Message -->*/}
+            {data.notifications.map((notification, index) => {
                     return (
                       <span href="" className="message-item" key={index}>
                         <span
