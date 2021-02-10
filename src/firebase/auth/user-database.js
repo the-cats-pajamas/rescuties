@@ -1,4 +1,4 @@
-import { database } from "./firebase";
+import { database } from "../firebase";
 
 // User API
 
@@ -7,7 +7,6 @@ export const doCreateUser = (id, username, email) =>
     user: username,
     email: email,
     role: 'user',
-    savedPets: ''
   });
 
 export const onceGetUsers = () => database.ref("users").once("value");
