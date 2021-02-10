@@ -12,7 +12,7 @@ const Cards = props => {
 
   useEffect(() => {
     props.get();
-  }, []);
+  }, [props]);
 
   const rows = [[]];
 
@@ -35,7 +35,7 @@ const Cards = props => {
     <div>
       <h5 className="mb-3">Basic Cards</h5>
       {rows.map((pet, i) => {
-        return <ViewRow pets={props.animals} animals={rows[i]} />;
+        return <ViewRow pets={props.animals} key={i} animals={rows[i]} />;
       })}
     </div>
   );
