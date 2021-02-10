@@ -17,10 +17,8 @@ import {
     Row,
     Col
 } from 'reactstrap';
+import logo from '../../../assets/logos/logo.png';
 
-import img1 from './img1.jpg';
-import img2 from './img2.jpg';
-import img3 from './img3.jpg';
 
 const Rows = (props) => {
     console.log("Props within the Row component: ", props.pets);
@@ -33,13 +31,19 @@ const Rows = (props) => {
             <Col xs="12" md="4">
         
                         <Card>
-                            <CardImg top width="100%" src={animal.photos[0]} />
+                            {animal.photos.length > 0 ? 
+                          
+                            <CardImg top width="100%" src={animal.photos[0].small} />                          
+                            : <CardImg top width="100%" src={logo} />
+                            }
+
+
                             <CardBody>
-                                <CardTitle>{animal.name}</CardTitle>
-                                <CardSubtitle>{animal.species}</CardSubtitle>
-                                <CardSubtitle>{animal.breed} </CardSubtitle>
-                                {/* <CardSubtitle>Location: </CardSubtitle> */}
-                                <CardText>{animal.description}</CardText>
+                                <CardTitle>Name: {animal.name}</CardTitle>
+                                <CardSubtitle>Species: {animal.species}</CardSubtitle>
+                                <CardSubtitle>Breed: {animal.breeds.primary} </CardSubtitle>
+                                <CardSubtitle>Location: {animal.contact.address.city}, {animal.contact.address.state} </CardSubtitle>
+                                <CardText>Description: {animal.description}</CardText>
                                 <Button>Contact Shelter</Button>
                             </CardBody>
                         </Card>
