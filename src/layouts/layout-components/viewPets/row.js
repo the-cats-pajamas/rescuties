@@ -33,7 +33,7 @@ const Rows = (props) => {
                         <Card>
                             {animal.photos.length > 0 ? 
                           
-                            <CardImg top width="100%" src={animal.photos[0].small} />                          
+                            <CardImg top width="100%" src={animal.photos[0].full} />                          
                             : <CardImg top width="100%" src={logo} />
                             }
 
