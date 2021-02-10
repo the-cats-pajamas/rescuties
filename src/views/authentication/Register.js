@@ -19,7 +19,7 @@ const sidebarBackground = {
   backgroundPosition: "center center",
 };
 
-const Register2 = (props) => {
+const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -125,7 +125,7 @@ const Register2 = (props) => {
             </Col>
             <Col md="6" lg="4" className="bg-white">
               <div className="p-4">
-                <h3 className="font-medium mb-3">Sign Up to Admin</h3>
+                <h3 className="font-medium mb-3">Sign Up</h3>
                 <Form className="mt-3" id="loginform" action="/dashbaord">
                   <FormGroup className="mb-3">
                     <Label for="username" className="font-medium">
@@ -204,7 +204,7 @@ const Register2 = (props) => {
                   </Row>
                   <div className="text-center">
                     Already have an account?{" "}
-                    <a href="/authentication/login2" className="text-info ml-1">
+                    <a href="/authentication/login" className="text-info ml-1">
                       <b>Sign In</b>
                     </a>
                   </div>
@@ -218,4 +218,4 @@ const Register2 = (props) => {
   );
 };
 
-export default Register2;
+export default Register;

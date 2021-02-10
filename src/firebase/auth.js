@@ -14,3 +14,15 @@ export const doPasswordReset = (email) => Auth.sendPasswordResetEmail(email);
 // Password Change
 export const doPasswordUpdate = (password) =>
   Auth.currentUser.updatePassword(password);
+
+export const signedInCurrentUser = async () => {
+    await Auth.onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          return true;
+        } else {
+          // No user is signed in.
+          return false;
+        }
+      })
+}
