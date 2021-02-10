@@ -59,11 +59,10 @@ const Dropdowns = () => {
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem disabled>Show All Animals</DropdownItem>
+                    <DropdownItem>Show Cats</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem>Show Dogs</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
                 <ButtonDropdown
@@ -76,11 +75,12 @@ const Dropdowns = () => {
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem disabled>All Ages</DropdownItem>
+                    <DropdownItem>Baby 0 - 1 yr</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem>Young 1yr - 3 yrs</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem>Adult 3+ yrs</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
                 <ButtonDropdown
@@ -93,11 +93,10 @@ const Dropdowns = () => {
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem disabled>All Genders</DropdownItem>
+                    <DropdownItem>Female</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem>Male</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
                 <ButtonDropdown
@@ -110,11 +109,12 @@ const Dropdowns = () => {
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem disabled>All Environments</DropdownItem>
+                    <DropdownItem>Good With Cats</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem>Good With Dogs</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem>Good With Children</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>
