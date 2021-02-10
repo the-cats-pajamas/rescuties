@@ -7,6 +7,7 @@ export default class Step1 extends Component {
     this.state = {
       email: props.getStore().email,
       name: props.getStore().name,
+      phone: props.getStore().phone
     };
     this._validateOnDemand = true; // this flag enables onBlur validation as user fills forms
 
@@ -25,6 +26,7 @@ export default class Step1 extends Component {
       })
     ) {
       if (
+        this.props.getStore().phone !== userInput.phone ||
         this.props.getStore().email !== userInput.email ||
         this.props.getStore().name !== userInput.name
       ) {
@@ -88,6 +90,7 @@ export default class Step1 extends Component {
     return {
       name: this.name.value,
       email: this.email.value,
+      phone: this.phone.value
     };
   }
   render() {
@@ -158,7 +161,7 @@ export default class Step1 extends Component {
                           <input
                             // ref="name"
                             ref={e => {
-                              this.name = e;
+                              this.phone = e;
                             }}
                             autoComplete="off"
                             className={notValidClasses.phoneCls}
