@@ -40,9 +40,8 @@ function getNewToken() {
   }
 }
 
-validateToken();
-
-export const get = () => dispatch => {
+export const get = () => async dispatch => {
+  await validateToken();
   const token = JSON.parse(localStorage.getItem('token'));
   return superagent
     .get('https://api.petfinder.com/v2/animals?page=2')
