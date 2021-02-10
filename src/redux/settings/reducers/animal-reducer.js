@@ -1,33 +1,59 @@
 import superagent from 'superagent';
+require('dotenv').config();
+const id = process.env.REACT_APP_ID;
+const secret = process.env.REACT_APP_SECRET;
 
 let initialState = {
-  animals: ["Cat", "Dog", "Pomeranion", "Puppy"],
+  animals: [],
 };
 
-let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJkeWJMdkVsb0JBczBrZmxTek9obXR5MXE2WVA0cllhbWVyZFNIRW8xdzBiSXkzSjY4RSIsImp0aSI6ImQyOThiYmQ4MDg2YzJkNzA5ZjgyMDI4NzVlMjI5NGFhOTY3MTNkNTM3MGRmMDU0YzJlOTZhOTkxMzA1NWYzYWI5MTljYTA1MTU4ODUzNTAyIiwiaWF0IjoxNjEyOTEyMDYzLCJuYmYiOjE2MTI5MTIwNjMsImV4cCI6MTYxMjkxNTY2Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.xCV0TuS2r_3aimAbmGBHJGh36nr7XNGI9Scxko4kXzWM7Jh6LbaW6rpQ23JNSzgdwHwWPq8Fdq2x-OjktGFhmhzJRA1T4-z8HoOzP9HWKA5KntSEz5orZ2Gp1TjgfiE8FiLbwr14LRuPtZO2esUGq4U9dPUb3xWxorpfm5UDZZyieLp_7Cr6yo6xvF8R2EwHsQq66KVx0VMpZo7TQ5OTHBspKtVlFT6GFEidjVEEUVMQlWLOWa9UkIxbJCsSrpYtoCFSFX6P5Eb_jYGCpTca_vdKushsZiCooHKaRrFpktjgW_SzfAQ3a2o06QVT708Pg7ld42t8Ie3XZIuH6Qf7IQ';
 
-const parseJwt = (token) => {
+function validateToken(token) {
+
   try {
-   let jwt = JSON.parse(atob(token.split('.')[1]));
-   console.log('jwt expires at', new Date(jwt.exp))
-   return jwt;
+    if (!token) getNewToken();
+    let jwt = JSON.parse(atob(token.split('.')[1]));
+    console.log('jwt expires at', new Date(jwt.exp));
+    if (jwt.exp > Date.now()) {
+      console.log('expired token');
+      getNewToken();
+    }
+    if (jwt.exp < Date.now()) console.log('valid token');
   } catch (e) {
     return null;
   }
-};
-parseJwt(token);
+}
 
-export const get = () => dispatch => {
+function getNewToken() {
+  try {
+    superagent
+      .post('https://api.petfinder.com/v2/oauth2/token')
+      .send({ grant_type: 'client_credentials' })
+      .send({ client_id: id })
+      .send({ client_securet: secret })
+      .then(results => {
+        let newToken = results.body.access_token;
+        console.log('new token, who dis?', newToken);
+        localStorage.setItem('token', JSON.stringify(newToken));
+        return newToken;
+      });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const get = () => async dispatch => {
+  await validateToken();
+  const token = JSON.parse(localStorage.getItem('token'));
   return superagent
     .get('https://api.petfinder.com/v2/animals?page=2')
-    .auth(token, {type: 'bearer'})
+    .auth(token, { type: 'bearer' })
     .then(response => {
       dispatch(getAction(response.body));
     });
 };
 
 export const getAction = payload => {
-  console.log('payload______', payload.animals)
   return {
     type: 'GET',
     payload: payload,
@@ -35,13 +61,11 @@ export const getAction = payload => {
 };
 
 export default (state = initialState, action) => {
-  console.log('in the switch statement', action);
   let { type, payload } = action;
   switch (type) {
     case 'GET':
-      console.log('Response from get request:', payload.animals)
       return {
-        results:payload,
+        results: payload,
       };
     default:
       return state;
