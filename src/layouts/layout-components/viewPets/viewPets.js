@@ -36,9 +36,11 @@ const Cards = (props) => {
     console.log('Here are ALL the props', props);
     console.log('Here are the props from the animal reducer:', props.animals);
 
+    const {animals} = props;
+    
     useEffect(() => {
         props.get();
-      }, []);
+      }, [animals, props]);
 
     return (
         <div>
