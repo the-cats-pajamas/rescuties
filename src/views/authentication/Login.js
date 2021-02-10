@@ -191,7 +191,7 @@ const Login2 = (props) => {
                   <div className="text-center">
                     Don&apos;t have an account?{" "}
                     <a
-                      href="/authentication/register2"
+                      href="/authentication/register"
                       className="text-info ml-1"
                     >
                       <b>Sign Up</b>
