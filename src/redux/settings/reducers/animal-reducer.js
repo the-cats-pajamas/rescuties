@@ -7,9 +7,7 @@ let initialState = {
   animals: [],
 };
 
-
 function validateToken(token) {
-
   try {
     if (!token) getNewToken();
     let jwt = JSON.parse(atob(token.split('.')[1]));
@@ -33,7 +31,6 @@ function getNewToken() {
       .send({ client_securet: secret })
       .then(results => {
         let newToken = results.body.access_token;
-        console.log('new token, who dis?', newToken);
         localStorage.setItem('token', JSON.stringify(newToken));
         return newToken;
       });
