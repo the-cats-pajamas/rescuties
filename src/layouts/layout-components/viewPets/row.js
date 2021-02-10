@@ -23,26 +23,30 @@ import img2 from './img2.jpg';
 import img3 from './img3.jpg';
 
 const Rows = (props) => {
-    console.log("Pets!!!", props.pets);
+    console.log("Props within the Row component: ", props.pets);
+    console.log("Props.results within the Row component: ", props.pets.results);
+
     return(
     <Row>
-    {props.animals.map(animal => {
-        return <Col xs="12" md="4">
-    
-                    <Card>
-                        <CardImg top width="100%" src={img1} />
-                        <CardBody>
-                            <CardTitle>Name</CardTitle>
-                            <CardSubtitle>Species: </CardSubtitle>
-                            <CardSubtitle>Breed: </CardSubtitle>
-                            <CardSubtitle>Location: </CardSubtitle>
-                            <CardText>Description: </CardText>
-                            <Button>Contact Shelter</Button>
-                        </CardBody>
-                    </Card>
-                </Col>
-
-    })}
+        {props.pets.results ? 
+        (props.pets.results.animals.map(animal => (
+            <Col xs="12" md="4">
+        
+                        <Card>
+                            <CardImg top width="100%" src={animal.photos[0]} />
+                            <CardBody>
+                                <CardTitle>{animal.name}</CardTitle>
+                                <CardSubtitle>{animal.species}</CardSubtitle>
+                                <CardSubtitle>{animal.breed} </CardSubtitle>
+                                {/* <CardSubtitle>Location: </CardSubtitle> */}
+                                <CardText>{animal.description}</CardText>
+                                <Button>Contact Shelter</Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+        )))
+     : ''
+    }
             </Row>
             )
 }

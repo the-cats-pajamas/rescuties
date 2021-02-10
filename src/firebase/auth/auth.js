@@ -1,4 +1,4 @@
-import { Auth } from "./firebase";
+import { Auth } from "../firebase";
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email, password) =>
   Auth.createUserWithEmailAndPassword(email, password);
@@ -19,7 +19,8 @@ export const signedInCurrentUser = async () => {
     await Auth.onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          return true;
+          // Send back UUID 
+          return user.uuid;
         } else {
           // No user is signed in.
           return false;
