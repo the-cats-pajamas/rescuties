@@ -1,9 +1,12 @@
 import { lazy } from "react";
+import Pets from '../layouts/layout-components/viewPets/viewPets';
 const Home = lazy(() => import('../layouts/layout-components/home/home'));
 const Rehome = lazy(() => import('../layouts/layout-components/rehome/rehome'));
 const Quiz = lazy(() => import('../layouts/layout-components/quiz/quiz'));
-const Pets = lazy(() => import('../layouts/layout-components/viewPets/viewPets'));
+// const Pets = lazy(() => import('../layouts/layout-components/viewPets/viewPets'));
 const HappyTails = lazy(() => import('../layouts/layout-components/happyTails/happyTails'));
+console.log(typeof Pets);
+console.log(Pets);
 
 var ThemeRoutes = [
   {

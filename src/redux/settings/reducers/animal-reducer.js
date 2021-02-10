@@ -7,7 +7,9 @@ let initialState = {
   animals: [],
 };
 
+
 function validateToken(token) {
+
   try {
     if (!token) getNewToken();
     let jwt = JSON.parse(atob(token.split('.')[1]));
