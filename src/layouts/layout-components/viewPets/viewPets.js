@@ -22,7 +22,9 @@ const Cards = props => {
   return (
     <div>
       <h5 className="mb-3">Search Adoptable Pets</h5>
-      <FilterButtons style={ {margin: ''} } />
+      <FilterButtons 
+      pets={props.animals} 
+      style={ {margin: ''} } />
       {rows.map((pet, i) => {
         return <ViewRow pets={props.animals} key={i} animals={rows[i]} />;
       })}

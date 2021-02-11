@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux'
 import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   ButtonDropdown,
   Button,
-  Card,
-  CardBody,
-  CardTitle,
   Row,
   Col
 } from 'reactstrap';
-
-const Dropdowns = () => {
-
+import { showFilterHandler } from '../../../redux/settings/reducers/animal-reducer';
+const mapDispatchToProps = {showFilterHandler};
+const Dropdowns = (props) => {
+console.log('props44444444444', props)
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
@@ -60,9 +59,9 @@ const Dropdowns = () => {
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
                     <DropdownItem disabled>Show All Animals</DropdownItem>
-                    <DropdownItem>Show Cats</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Cat", "species")}>Show Cats</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Show Dogs</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Dog", "species")}>Show Dogs</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
                 <ButtonDropdown
@@ -133,4 +132,8 @@ const Dropdowns = () => {
   );
 }
 
-export default Dropdowns;
+const mapStateToProps = state => ({
+  animals: state.animals,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dropdowns);
