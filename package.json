@@ -1,7 +1,7 @@
 {
   "name": "materialpro",
   "version": "1.0.0",
-  "homepage": "/",
+  "homepage": "/page",
   "description": "material-pro react admin comes with the beautiful Ui with easy to use code",
   "main": "index.js",
   "scripts": {
