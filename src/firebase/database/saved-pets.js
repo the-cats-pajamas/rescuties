@@ -5,6 +5,9 @@ function saveNewPet(userId, pet) {
         name: pet.name,
         species: pet.species,
         breed: pet.breed,
-
+        city: pet.city,
+        state: pet.state,
+        description: pet.description,
+        email: pet.email,
     });
   }
