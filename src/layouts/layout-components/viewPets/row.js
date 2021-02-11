@@ -11,6 +11,8 @@ import {
   Col,
 } from 'reactstrap';
 import logo from '../../../assets/logos/logo.png';
+import { Auth } from '../../../firebase/firebase';
+import saveNewPet from '../../../firebase/database/saved-pets';
 
 const Rows = props => {
   const showAnimals = () => {
@@ -48,7 +50,18 @@ const Rows = props => {
           })
         : filteredForGender;
     return filteredForEnvironment;
-  };
+
+    }
+
+    const saveAnimalToFavorites = (animal) => {
+        if(Auth.currentUser) {
+          saveNewPet(Auth.currentUser.uid, animal);
+        } else {
+            alert('Please sign in.')
+        }
+    }
+
+
   return (
     <Row>
       {props.pets.results
@@ -60,7 +73,6 @@ const Rows = props => {
                 ) : (
                   <CardImg top width="100%" src={logo} />
                 )}
-
                 <CardBody>
                   <CardTitle>Name: {animal.name}</CardTitle>
                   <CardSubtitle>Species: {animal.species}</CardSubtitle>
@@ -87,6 +99,7 @@ const Rows = props => {
                     ''
                   )}
                   <Button
+                    onClick={() => saveAnimalToFavorites(animal)}
                     style={{
                       width: '120px',
                       height: '50px',

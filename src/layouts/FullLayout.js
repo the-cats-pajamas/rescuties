@@ -15,6 +15,7 @@ const Home = lazy(() => import('../layouts/layout-components/home/home'));
 const Rehome = lazy(() => import('../layouts/layout-components/rehome/rehome'));
 const Quiz = lazy(() => import('../layouts/layout-components/quiz/quiz'));
 const HappyTails = lazy(() => import('../layouts/layout-components/happyTails/happyTails'));
+const Favorites = lazy(() =>  import('../layouts/layout-components/favorites'))
 
 export default (props) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -93,47 +94,10 @@ export default (props) => {
             <Switch>
             <PrivateRoutes path="/page/quiz" component={Quiz}/>;
             <PrivateRoutes path="/page/rehome" component={Rehome}/>;
+            <PrivateRoutes path='/page/favorites' component={Favorites} />
             <Route path='/page/pets' component={Pets} />
             <Route path='/page/happytails' component={HappyTails} />
-            <Route path='/page' component={Home} />
-              {/* {ThemeRoutes.map((prop, key) => {
-                if (prop.navlabel) {
-                  return null;
-                } else if (prop.collapse) {
-                  return prop.child.map((prop2, key2) => {
-                    if (prop2.collapse) {
-                      return prop2.subchild.map((prop3, key3) => {
-                        return (
-                          <Route
-                            path={prop3.path}
-                            component={prop3.component}
-                            key={key3}
-                          />
-                        );
-                      });
-                    }
-                    return (
-                      <Route
-                        path={prop2.path}
-                        component={prop2.component}
-                        key={key2}
-                      />
-                    );
-                  });
-                } else if (prop.redirect) {
-                  return (
-                    <Redirect from={prop.path} to={prop.pathTo} key={key} />
-                  );
-                } else {
-                  return (
-                    <Route
-                      path={prop.path}
-                      component={prop.component}
-                      key={key}
-                    />
-                  );
-                }
-              })} */}
+            <Route exact path='/page' component={Home} />
             </Switch>
           </Suspense>
         </div>
