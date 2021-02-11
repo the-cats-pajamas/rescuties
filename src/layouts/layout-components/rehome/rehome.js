@@ -14,10 +14,12 @@ class formSteps extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
+		this.isAdmin = false;
 
 		this.sampleStore = {
 			email: '',
 			name: '',
+			phone: '',
 			savedToCloud: false
 		};
 	}
@@ -31,9 +33,14 @@ class formSteps extends Component {
 			...this.sampleStore,
 			...update,
 		}
+		console.log('this.sampleStore is now: ', this.sampleStore);
 	}
 
+
+
+	
 	render() {
+		console.log('this.sampleStore is now: ', this.sampleStore);
 		const steps =
 			[
 				{ name: 'Welcome', component: <Step1 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> },
@@ -42,6 +49,7 @@ class formSteps extends Component {
 			]
 
 		return (
+			(!this.isAdmin ? 
 			<Card>
 				<CardBody className="border-bottom">
 					<CardTitle className="mb-0"><i className="mdi mdi-paw mr-2"></i>Rehome A Pet</CardTitle>
@@ -57,6 +65,11 @@ class formSteps extends Component {
 					</div>
 				</CardBody>
 			</Card>
+			: <div>
+				<p>Welcome, admin! </p>
+				<p>You have {this.sampleStore.length-1} submissions to review.</p>
+			</div>
+			)
 
 		)
 	}

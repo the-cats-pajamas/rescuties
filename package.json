@@ -1,7 +1,7 @@
 {
   "name": "materialpro",
   "version": "1.0.0",
-  "homepage": "https://rescuties-401d39.web.app/home",
+  "homepage": "/",
   "description": "material-pro react admin comes with the beautiful Ui with easy to use code",
   "main": "index.js",
   "scripts": {

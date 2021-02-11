@@ -1,8 +1,8 @@
 import { database } from '../firebase';
 
-function addSubmission(address, breed, city, email, locationState, name, 
+function addSubmission(userID, address, breed, city, email, locationState, name, 
     petName, phone, photo, savedToCloud, sex, type, zipCode) {
-    database.ref('submissions/' + email).set({
+    database.ref('submissions/' + userID).set({
         [petName] : {
             contactName: name,
             address: address,

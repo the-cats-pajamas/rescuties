@@ -6,30 +6,22 @@ import ViewRow from './row.js';
 const mapDispatchToProps = { get };
 
 const Cards = props => {
+
+  // const [petUrl, setpetUrl] = useState("https://www.petfinder.com/dog/willow-50513060/in/fort-wayne/perfect-paws-pet-rescue-inc-in267/?referrer_id=fe654437-6639-46f9-9ea6-4e29ce44cbb3");
+
+  // const loadImage= () => {
+  //   setpetUrl(petUrl)
+  // }
+
   console.log('Here are ALL the props', props);
   console.log('Here are the props from the animal reducer:', props.animals);
   console.log('HERE ARE THE ANIMALS:', props.animals.results);
 
   useEffect(() => {
     props.get();
-  }, [props]);
+  }, []);
 
   const rows = [[]];
-
-//   const addRows = props.animals => {
-//     props.animals.length > 0
-//       ? props.animals.forEach(animal => {
-//           if (rows[rows.length - 1].length === 3) {
-//             rows.push([]);
-//           }
-//           rows[rows.length - 1].push(animal);
-//         })
-//       : '';
-//   };
-
-//   addRows(props.animals);
-
-//   console.log('Rows!!!!!', rows);
 
   return (
     <div>
@@ -37,6 +29,8 @@ const Cards = props => {
       {rows.map((pet, i) => {
         return <ViewRow pets={props.animals} key={i} animals={rows[i]} />;
       })}
+      {/* <img src={petUrl}></img> */}
+
     </div>
   );
 };
