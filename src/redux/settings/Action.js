@@ -72,3 +72,47 @@ export const setSidebarType = (payload) => {
         payload
     }
 }
+
+export const showAll = (animal) => {
+    return { 
+      type: 'ANIMALS',
+      payload: animal,
+    }
+  };
+  
+  export const addAnimal = (name) => {
+    
+    return {
+      type: 'ADD-ANIMAL',
+      payload: name,
+    }
+  };
+  
+  export const updateAnimal = (name) => {
+    return {
+      type: 'UPDATE-ANIMAL',
+      payload: name,
+    }
+  }
+  
+  export const deleteAnimal = (name) => {
+    return { 
+      type: 'DELETE-ANIMAL',
+      payload: name,
+    }
+  }
+  
+  export const getAction = payload => {
+    return {
+      type: 'GET',
+      payload: payload
+    }
+  }
+
+  export const addToFavorites = payload => {
+    return {
+      type: 'ADD-TO-FAVORITES',
+      payload: payload,
+  
+    }
+  };

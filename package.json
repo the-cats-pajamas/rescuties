@@ -20,6 +20,7 @@
     "node": "^8.15.0"
   },
   "dependencies": {
+    "@material-ui/core": "^5.0.0-alpha.24",
     "apexcharts": "^3.18.1",
     "axios": "^0.21.1",
     "chart.js": "2.7.2",

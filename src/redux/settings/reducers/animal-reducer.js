@@ -7,6 +7,8 @@ let initialState = {
   animals: [],
   species: "",
   age: "",
+  gender: "",
+  environment: ""
 };
 
 
