@@ -20,7 +20,8 @@ export const signedInCurrentUser = async () => {
         if (user) {
           // User is signed in.
           // Send back UUID 
-          return user.uuid;
+          console.log('We are in the auth and here is my id: ', user.uid);
+          return user.uid;
         } else {
           // No user is signed in.
           return false;

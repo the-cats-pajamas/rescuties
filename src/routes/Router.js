@@ -17,7 +17,7 @@ var ThemeRoutes = [
   },
   {
     path: "/quiz",
-    name: "Quiz",
+    name: "Pet Matcher Quiz",
     icon: "mdi mdi-pencil",
     component: Quiz,
   },
