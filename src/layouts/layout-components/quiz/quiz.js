@@ -293,7 +293,25 @@ const Basicform = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>I would like a cat that is:</Label>
+                  <Label>I would like a dog that is:</Label>
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox10"
+                    label="small"
+                  />
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox11"
+                    label="medium"
+                  />
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox12"
+                    label="large"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>I would like a dog that is:</Label>
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox5"
@@ -302,12 +320,12 @@ const Basicform = () => {
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox6"
-                    label="good with other cats"
+                    label="good with other dogs"
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox7"
-                    label="good with dogs"
+                    label="good with cats"
                   />
                 </FormGroup>
               </Form>
