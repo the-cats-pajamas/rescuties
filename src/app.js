@@ -8,6 +8,7 @@ import { History } from "./firebase/History";
 import { PrivateRoute } from "./routes/PrivateRoutes";
 import FullLayout from "./layouts/FullLayout";
 import Login from './views/authentication/Login'
+import Register from './views/authentication/Register'
 
 const App = () => {
   //const [currentUser, SetcurrentUser] = useState(null);
@@ -17,6 +18,7 @@ const App = () => {
         <Switch>
           <Route  path="/page" component={FullLayout} />;
           <Route exact path="/authentication/Login" component={Login} />;
+          <Route exact path="/authentication/Register" component={Register} />;
           <Route exact path='/'><Redirect to="/page" /></Route>
           
           {/* {ProtectedRoutes.map((prop, key) => {

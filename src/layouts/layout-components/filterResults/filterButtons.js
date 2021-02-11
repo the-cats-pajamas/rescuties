@@ -75,11 +75,13 @@ console.log('props44444444444', props)
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
                     <DropdownItem disabled>All Ages</DropdownItem>
-                    <DropdownItem>Baby 0 - 1 yr</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Baby", "age")}>Baby 0 - 1yr</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Young 1yr - 3 yrs</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Young", "age")}>Young 1yr - 3yrs</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Adult 3+ yrs</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Adult", "age")}>Adult 3yrs - 10yrs</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => props.showFilterHandler("Senior", "age")}>Senior 10yrs +</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
                 <ButtonDropdown
@@ -93,9 +95,9 @@ console.log('props44444444444', props)
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
                     <DropdownItem disabled>All Genders</DropdownItem>
-                    <DropdownItem>Female</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Female", "gender")}>Female</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Male</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("Male", "gender")}>Male</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
                 <ButtonDropdown
@@ -109,11 +111,11 @@ console.log('props44444444444', props)
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
                     <DropdownItem disabled>All Environments</DropdownItem>
-                    <DropdownItem>Good With Cats</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("cats", "environment")}>Good With Cats</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Good With Dogs</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("dogs", "environment")}>Good With Dogs</DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>Good With Children</DropdownItem>
+                    <DropdownItem onClick={() => props.showFilterHandler("children", "environment")}>Good With Children</DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>
@@ -137,3 +139,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dropdowns);
+
+
+
+

@@ -2,17 +2,10 @@ import React from 'react';
 import {
     Card,
     CardImg,
-    CardImgOverlay,
     CardText,
     CardBody,
     CardTitle,
     CardSubtitle,
-    CardColumns,
-    CardGroup,
-    CardDeck,
-    CardLink,
-    CardHeader,
-    CardFooter,
     Button,
     Row,
     Col
@@ -36,7 +29,24 @@ const Rows = (props) => {
         return animal.age === props.pets.age;
     })
     : filteredForSpecies;
-    return filteredForAge;
+   
+    let filteredForGender = props.pets.gender !== '' ? filteredForAge.filter(animal => {
+        return animal.gender === props.pets.gender;
+    }) 
+    : filteredForAge;
+
+    
+    let filteredForEnvironment = props.pets.environment !== '' ? filteredForGender.filter(animal => {
+        for(let kvp in animal.environment){
+            if(kvp === props.pets.environment){
+              if(animal.environment[kvp] == true){
+                return animal;    
+              }
+            }
+        }
+    })
+    : filteredForGender;
+    return filteredForEnvironment;
     }
     return(
     <Row>
@@ -44,7 +54,7 @@ const Rows = (props) => {
         (showAnimals().map(animal => (
             <Col xs="12" md="4">
         
-                        <Card>
+                        <Card >
                             {animal.photos.length > 0 ? 
                           
                             <CardImg top width="100%" src={animal.photos[0].full} />                          
@@ -52,14 +62,14 @@ const Rows = (props) => {
                             }
 
 
-                            <CardBody>
+                            <CardBody style={{overflow: "scroll"}}>
                                 <CardTitle>Name: {animal.name}</CardTitle>
                                 <CardSubtitle>Species: {animal.species}</CardSubtitle>
                                 <CardSubtitle>Breed: {animal.breeds.primary} </CardSubtitle>
                                 <CardSubtitle>Location: {animal.contact.address.city}, {animal.contact.address.state} </CardSubtitle>
                                 <CardText>Description: {animal.description}</CardText>
-                                <Button>Contact Shelter</Button>
-                                <Button>Add To Favorites</Button>
+                                <Button href="mailto:someone@yoursite.com">Contact Shelter</Button> 
+                                <Button>Add To favorites</Button>
                             </CardBody>
                         </Card>
                     </Col>

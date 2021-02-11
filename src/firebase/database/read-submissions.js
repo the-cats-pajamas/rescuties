@@ -1,6 +1,6 @@
 import { database } from '../firebase';
 
-export const getSubmissions = () => {
+export default function getSubmissions(){
     let review = database.ref('/submissions').once('value').then((snapshot) => {
         return snapshot.val();
       });

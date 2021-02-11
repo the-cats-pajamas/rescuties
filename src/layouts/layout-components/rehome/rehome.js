@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StepZilla from 'react-stepzilla';
+import getSubmissions from '../../../firebase/database/read-submissions'
 import {
 	Card,
 	CardBody,
@@ -35,9 +36,6 @@ class formSteps extends Component {
 		}
 		console.log('this.sampleStore is now: ', this.sampleStore);
 	}
-
-
-
 	
 	render() {
 		console.log('this.sampleStore is now: ', this.sampleStore);
@@ -67,7 +65,7 @@ class formSteps extends Component {
 			</Card>
 			: <div>
 				<p>Welcome, admin! </p>
-				<p>You have {this.sampleStore.length-1} submissions to review.</p>
+				{getSubmissions()}
 			</div>
 			)
 

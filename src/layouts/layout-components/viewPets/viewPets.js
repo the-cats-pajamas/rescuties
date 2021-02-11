@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { get } from '../../../redux/settings/reducers/animal-reducer';
 import ViewRow from './row.js';
 import FilterButtons from '../filterResults/filterButtons';
+import Favorites from '../../layout-components/favorites';
+import { BrowserRouter as Switch, Route } from "react-router-dom";
 
 const mapDispatchToProps = { get };
 
@@ -28,6 +30,11 @@ const Cards = props => {
       {rows.map((pet, i) => {
         return <ViewRow pets={props.animals} key={i} animals={rows[i]} />;
       })}
+      <Switch>
+        <Route exact path='/favorites' component={Favorites}> 
+          <Favorites />
+        </Route>
+      </Switch>
 
     </div>
   );
