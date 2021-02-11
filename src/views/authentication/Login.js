@@ -25,6 +25,7 @@ const sidebarBackground = {
 const Login2 = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [staySignedIn, setStaySignedIn] = useState(false);
 
   const onInputChange = (e) => {
     formValidators([e.target.name], e.target.value);
@@ -81,17 +82,29 @@ const Login2 = (props) => {
   const doLogin = (event) => {
     const email1 = email;
     const password1 = password;
+    // console.log('remember me?', staySignedIn);
+    // if(staySignedIn) {
+    //   Auth.rememberMe(email, password)
+    // } 
     Auth.doSignInWithEmailAndPassword(email1, password1)
       .then(() => {
         setEmail(email1);
         setPassword(password1);
-        props.history.push("/");
+        props.history.push("/page");
       })
       .catch((error) => {
         alert("Invalid login id or password.");
       });
     event.preventDefault();
   };
+
+  const rememberMe = () => {
+    if(staySignedIn) {
+      setStaySignedIn(false)
+    } else {
+      setStaySignedIn(true);
+    }
+  }
 
   return (
     <div
@@ -169,6 +182,8 @@ const Login2 = (props) => {
                   {showErrors("password")}
                   <div className="d-flex no-block align-items-center mb-4 mt-4">
                     <CustomInput
+                      // add a click method to say true or false for persistence 
+                      onClick = {e => rememberMe()}
                       type="checkbox"
                       id="exampleCustomCheckbox"
                       label="Remember Me"
