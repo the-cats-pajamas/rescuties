@@ -1,21 +1,20 @@
 import { database } from '../firebase';
 
-function addSubmission(address, breed, city, email, locationState, name, 
-    petName, phone, photo, savedToCloud, sex, type, zipCode) {
-    database.ref('submissions/' + email).set({
-        [petName] : {
-            contactName: name,
-            address: address,
-            city: city,
-            state: locationState,
-            zipCode: zipCode,
-            email: email,
-            phone: phone,
-            photo: photo,
-            type: type,
-            breed: breed,
-            sex: sex,
-            savedToCloud: 'false'
-        }
-    });
-  }
+export default function addSubmission(id, newPet) {
+  database.ref('submissions/' + id).set({
+    [newPet.petName]: {
+      contactName: newPet.name,
+      address: newPet.address,
+      city: newPet.city,
+      state: newPet.locationState,
+      zipCode: newPet.zipCode,
+      email: newPet.email,
+      phone: newPet.phone,
+      photo: newPet.photo,
+      type: newPet.type,
+      breed: newPet.breed,
+      sex: newPet.sex,
+      savedToCloud: 'false',
+    },
+  });
+}
