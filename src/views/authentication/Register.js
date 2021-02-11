@@ -112,15 +112,8 @@ const Register = (props) => {
               <div className="p-4">
                 <h2 className="display-5">
                   Hi,
-                  <br /> <span className="text-cyan font-bold">Dude</span>
+                  <br /> <span className="text-cyan font-bold">Pet Lover</span>
                 </h2>
-                <p className="op-5 mt-4">
-                  This is the Firebase sign-up section. Donec non pharetra
-                  ligula, sit amet laoreet arcu.Integer. you can use below
-                  username password for login
-                </p>
-                <p className="mt-5">Username: demo@demo.com</p>
-                <p className="align-items-end">Password: demo123</p>
               </div>
             </Col>
             <Col md="6" lg="4" className="bg-white">
