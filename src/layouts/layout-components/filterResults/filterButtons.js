@@ -60,7 +60,7 @@ console.log('props44444444444', props)
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem disabled>Show All Animals</DropdownItem>
+                    <DropdownItem disabled>Species Type</DropdownItem>
                     <DropdownItem onClick={() => props.showFilterHandler("Cat", "species")}>Show Cats</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem onClick={() => props.showFilterHandler("Dog", "species")}>Show Dogs</DropdownItem>
@@ -76,7 +76,7 @@ console.log('props44444444444', props)
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem disabled>All Ages</DropdownItem>
+                    <DropdownItem disabled>Ages</DropdownItem>
                     <DropdownItem onClick={() => props.showFilterHandler("Baby", "age")}>Baby 0 - 1yr</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem onClick={() => props.showFilterHandler("Young", "age")}>Young 1yr - 3yrs</DropdownItem>
@@ -96,7 +96,7 @@ console.log('props44444444444', props)
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem disabled>All Genders</DropdownItem>
+                    <DropdownItem disabled>Gender</DropdownItem>
                     <DropdownItem onClick={() => props.showFilterHandler("Female", "gender")}>Female</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem onClick={() => props.showFilterHandler("Male", "gender")}>Male</DropdownItem>
@@ -112,7 +112,7 @@ console.log('props44444444444', props)
                     </Button>
                   <DropdownToggle caret color="success" />
                   <DropdownMenu>
-                    <DropdownItem disabled>All Environments</DropdownItem>
+                    <DropdownItem disabled>Good With...</DropdownItem>
                     <DropdownItem onClick={() => props.showFilterHandler("cats", "environment")}>Good With Cats</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem onClick={() => props.showFilterHandler("dogs", "environment")}>Good With Dogs</DropdownItem>
