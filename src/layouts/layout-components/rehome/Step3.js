@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import addSubmission from '../../../firebase/database/submissions';
-import { Auth } from "../../../firebase";
+import { Auth } from '../../../firebase/firebase'
+
+const currentUser =  Auth.currentUser.uid;
 
 export default class Step4 extends Component {
 	constructor(props) {
@@ -12,11 +14,8 @@ export default class Step4 extends Component {
   }
 	
 	async handleSubmit(){
-		//let store = this.props.getStore();
-		let signedIn = await Auth.signedInCurrentUser();
-		console.log('Are we signed in? ', signedIn);
-		//signedIn ? addSubmission(signedIn, store) : console.log('You must sign in');
-		//console.log("here is the store", store);
+		let store = this.props.getStore();
+		addSubmission(currentUser, store);
 	}
 	
   render() {
