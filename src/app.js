@@ -5,7 +5,6 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "./redux/Store";
 import { History } from "./firebase/History";
-import { PrivateRoute } from "./routes/PrivateRoutes";
 import FullLayout from "./layouts/FullLayout";
 import Login from './views/authentication/Login'
 import Register from './views/authentication/Register'
@@ -20,6 +19,7 @@ const App = () => {
           <Route exact path="/authentication/Login" component={Login} />;
           <Route exact path="/authentication/Register" component={Register} />;
           <Route exact path='/'><Redirect to="/page" /></Route>
+          
           
           {/* {ProtectedRoutes.map((prop, key) => {
             console.log('protected routes!!!', prop)

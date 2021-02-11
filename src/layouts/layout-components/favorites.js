@@ -1,42 +1,77 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-// import Typography from '@material-ui/core/Typography';
-// import Container from '@material-ui/core/Container';
-// import Button from 'import { BrowserRouter as Router, Switch, Route } from "react-router-dom";';
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Row,
+  Col
+} from 'reactstrap';
 import { addAnimal, deleteAnimal, getAction, showAll, addToFavorites } from '../../redux/settings/Action';
+import {Auth, database} from '../../firebase/firebase'
+
 
 
 
 const Favorites = (props) => {
+  const [favorites, setFavorites] = useState([]);
+  const [keys, setKeys] = useState([])
 
-  let clickHandler = (animal) => {
-    console.log(animal);
-    props.addToFavorites(animal)
+  const deleteFave = (e) => {
+    let petId = keys[e.target.value];
+    console.log('petID', petId);
+    if(Auth.currentUser) {
+      let id = Auth.currentUser.uid;
+      let dbRef = database.ref('savedPets/'+ id);
+      dbRef.child(petId).remove();
+    }
   }
 
-  const load = () => {
-    props.getAction()
+
+  const getFaves = () => {
+    let catchPets = [];
+    let catchKeys = [];
+    if(Auth.currentUser) {
+      let id = Auth.currentUser.uid;
+      let dbRef = database.ref().child('savedPets/'+ id)
+      dbRef.on('value', snapshot => { 
+        for(let key in snapshot.val()) {
+          catchKeys.push(key);
+          catchPets.push(snapshot.val()[key]);
+        }
+        setKeys(catchKeys);
+        setFavorites(catchPets);
+      })  
+      console.log('favorites is now',favorites);
+    }
   }
 
-  useEffect(load, [])
+  useEffect(getFaves, [])
   
   console.log(props.favorites)
     return (
         <div>
-          {/* {props.favorites.favorites ? props.favorites.favorites.map((animal, idx) => (
-            key={idx}
-              {animal.name}
-              <Button onClick={() => {
-                clickHandler(animal)
-            }}>Remove From Favorites</Button>
-            
+          {favorites.map((pet, idx) => (
+            <Col xs="12" md="4">
+            <Card> 
+                <CardBody style={{overflow: "scroll"}}>
+                    <CardTitle>Name: {pet.name}</CardTitle>
+                    <CardSubtitle>Species: {pet.species}</CardSubtitle>
+                    <CardSubtitle>Breed: {pet.breed} </CardSubtitle>
+                    <CardSubtitle>Location: {pet.city}, {pet.state} </CardSubtitle>
+                    <CardText>Description: {pet.description}</CardText>
+                    <Button value={idx} onClick={deleteFave}>Remove</Button>
+                </CardBody>
+            </Card>
+          </Col>
+          ))
 
-          )}
-        :
-        null
-        }
-            {/* <Typography variant="h5"> */}
-                 */}
+          }
+          
         </div>  
 
         

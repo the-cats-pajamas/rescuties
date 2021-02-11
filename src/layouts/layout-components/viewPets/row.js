@@ -11,6 +11,8 @@ import {
     Col
 } from 'reactstrap';
 import logo from '../../../assets/logos/logo.png';
+import { Auth } from '../../../firebase/firebase';
+import saveNewPet from '../../../firebase/database/saved-pets';
 
 
 const Rows = (props) => {
@@ -48,6 +50,16 @@ const Rows = (props) => {
     : filteredForGender;
     return filteredForEnvironment;
     }
+
+    const saveAnimalToFavorites = (animal) => {
+        if(Auth.currentUser) {
+          saveNewPet(Auth.currentUser.uid, animal);
+        } else {
+            alert('Please sign in.')
+        }
+    }
+
+
     return(
     <Row>
         {props.pets.results ? 
@@ -69,7 +81,7 @@ const Rows = (props) => {
                                 <CardSubtitle>Location: {animal.contact.address.city}, {animal.contact.address.state} </CardSubtitle>
                                 <CardText>Description: {animal.description}</CardText>
                                 <Button href="mailto:someone@yoursite.com">Contact Shelter</Button> 
-                                <Button>Add To favorites</Button>
+                                <Button onClick={() => saveAnimalToFavorites(animal)}>Add To favorites</Button>
                             </CardBody>
                         </Card>
                     </Col>

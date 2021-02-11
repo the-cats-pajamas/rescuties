@@ -3,8 +3,11 @@ import Pets from '../layouts/layout-components/viewPets/viewPets';
 const Home = lazy(() => import('../layouts/layout-components/home/home'));
 const Rehome = lazy(() => import('../layouts/layout-components/rehome/rehome'));
 const Quiz = lazy(() => import('../layouts/layout-components/quiz/quiz'));
+const Favorites = lazy(() =>  import('../layouts/layout-components/favorites'))
 // const Pets = lazy(() => import('../layouts/layout-components/viewPets/viewPets'));
 const HappyTails = lazy(() => import('../layouts/layout-components/happyTails/happyTails'));
+
+
 console.log(typeof Pets);
 console.log(Pets);
 
@@ -38,50 +41,15 @@ const ThemeRoutes = [
     name: "Rehome A Pet",
     icon: "mdi mdi-home",
     component: Rehome,
+  },
+  {
+    path: "/page/favorites",
+    name: "Saved Pets",
+    icon: "mdi mdi-star",
+    component: Favorites,
   }
-  ,
   // { path: "/", pathTo: "/home", name: "Home", redirect: true },
 ];
 
 
-const ProtectedRoutes = [
-
-  {
-    path: "/quiz",
-    name: "Quiz",
-    icon: "mdi mdi-pencil",
-    component: Quiz,
-  },
-  {
-    path: "/rehome",
-    name: "Rehome A Pet",
-    icon: "mdi mdi-home",
-    component: Rehome,
-  }
-  ,
-];
-
-
-const PublicRoutes = [
-  {
-    path: "/home",
-    name: "Home",
-    icon: "mdi mdi-paw",
-    component: Home,
-  },
-  {
-    path: "/pets",
-    name: "View Available Pets",
-    icon: "mdi mdi-cat",
-    component: Pets,
-  },
-  {
-    path: "/happytails",
-    name: "Happy Tails",
-    icon: "mdi mdi-heart",
-    component: HappyTails,
-  },
-  { path: "/", pathTo: "/home", name: "Home", redirect: true },
-]
-
-export { ThemeRoutes, PublicRoutes, ProtectedRoutes};
+export { ThemeRoutes };
