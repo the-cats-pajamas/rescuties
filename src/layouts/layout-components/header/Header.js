@@ -7,8 +7,9 @@ import {
   Navbar,
   NavbarBrand,
   Collapse,
+  Button
 } from "reactstrap";
-
+import { Auth } from '../../../firebase/firebase';
 import rescuties from '../../../assets/logos/rescuties.png'
 import title from '../../../assets/logos/title.png'
 
@@ -50,6 +51,11 @@ export default () => {
       default:
     }
   };
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    await Auth.signOut();
+  }
 
   return (
     <header className="topbar navbarbg" data-navbarbg={settings.activeNavbarBg}>
@@ -117,6 +123,7 @@ export default () => {
           <Nav className="ml-auto float-right" navbar>
           </Nav>
         </Collapse>
+        {Auth.currentUser != null ? <Button onClick={e => handleSignOut(e)}>Sign Out</Button> : <Button><a href='/authentication/login' style={{color:'white'}}>Sign In</a></Button>}
       </Navbar>
     </header>
   );
