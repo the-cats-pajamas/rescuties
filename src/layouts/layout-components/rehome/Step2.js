@@ -18,6 +18,11 @@ export default class Step2 extends Component {
     });
   }
 
+  // onFileChange = event => {
+  //   console.log({ selectedFile: event.target.files[0] });
+  //   // this.setState({ selectedFile: event.target.files[0] });
+  // };
+
   _grabUserInput() {
     return {
       petName: this.petName.value,
@@ -203,10 +208,9 @@ export default class Step2 extends Component {
                       this.photo = e;
                     }}
                     onBlur={this.saveData}
+                    //onChange={this.onFileChange}
                     type="file"
                     required
-                    // eslint-disable-next-line react/jsx-no-duplicate-props
-                    //ref={this.fileInput}
                     className="form-control"
                     placeholder="photo"
                   />

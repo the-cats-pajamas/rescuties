@@ -164,14 +164,14 @@ export default class Step1 extends Component {
                               this.phone = e;
                             }}
                             autoComplete="off"
-                            className={notValidClasses.phoneCls}
+                            className={notValidClasses.emailCls}
                             required
                             placeholder="123-456-7890"
                             defaultValue={this.state.phone}
                             onBlur={this.validationCheck}
                           />
-                          <div className={notValidClasses.nameValGrpCls}>
-                            {this.state.nameValMsg}
+                          <div className={notValidClasses.emailValGrpCls}>
+                            {this.state.phoneValMsg}
                           </div>
                         </div>
                       </div>
