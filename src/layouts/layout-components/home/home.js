@@ -46,7 +46,7 @@ const JumbotronComponent = () => {
             If you are considering multiple pets, you can log in or sign up to save pets to your account.
             </p>
             <p className="lead">
-              <Button color="primary">My Account</Button>
+              <Button color="primary"><a href='/authentication/login' style={{color:'white'}}>My Account</a></Button>
             </p>
           </Jumbotron>
         </CardBody>

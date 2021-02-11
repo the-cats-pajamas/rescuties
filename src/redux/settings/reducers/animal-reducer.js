@@ -5,7 +5,18 @@ const secret = process.env.REACT_APP_SECRET;
 
 let initialState = {
   animals: [],
+  species: "",
+  age: "",
 };
+
+
+
+export const showFilterHandler = (type, filterCondition) => {
+    return {
+      type: "FILTER-TYPE",
+      payload: {type, filterCondition}
+    }
+}
 
 function validateToken(token) {
   try {
@@ -62,8 +73,10 @@ export default (state = initialState, action) => {
   switch (type) {
     case 'GET':
       return {
-        results: payload,
+        ...state, results: payload,
       };
+    case 'FILTER-TYPE':
+        return {...state, [payload.filterCondition]: payload.type}
     default:
       return state;
   }

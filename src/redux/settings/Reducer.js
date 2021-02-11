@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
     LOGO_BG,
     NAVBAR_BG,

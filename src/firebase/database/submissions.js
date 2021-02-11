@@ -18,3 +18,4 @@ export default function addSubmission(id, newPet) {
     },
   });
 }
+

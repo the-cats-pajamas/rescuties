@@ -1,12 +1,20 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { lazy, useState, useEffect, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./layout-components/header/Header";
 import Sidebar from "./layout-components/sidebar/Sidebar";
 import Footer from "./layout-components/footer/Footer";
 import Customizer from "./layout-components/customizer/Customizer";
-import ThemeRoutes from "../routes/Router";
 import Spinner from "../views/spinner/Spinner";
+
+// Routes
+import PrivateRoutes from '../routes/PrivateRoutes';
+import { ThemeRoutes } from '../routes/Router'
+import Pets from '../layouts/layout-components/viewPets/viewPets';
+const Home = lazy(() => import('../layouts/layout-components/home/home'));
+const Rehome = lazy(() => import('../layouts/layout-components/rehome/rehome'));
+const Quiz = lazy(() => import('../layouts/layout-components/quiz/quiz'));
+const HappyTails = lazy(() => import('../layouts/layout-components/happyTails/happyTails'));
 
 export default (props) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -83,7 +91,12 @@ export default (props) => {
         <div className="page-content container-fluid">
           <Suspense fallback={<Spinner />}>
             <Switch>
-              {ThemeRoutes.map((prop, key) => {
+            <PrivateRoutes path="/page/quiz" component={Quiz}/>;
+            <PrivateRoutes path="/page/rehome" component={Rehome}/>;
+            <Route path='/page/pets' component={Pets} />
+            <Route path='/page/happytails' component={HappyTails} />
+            <Route path='/page' component={Home} />
+              {/* {ThemeRoutes.map((prop, key) => {
                 if (prop.navlabel) {
                   return null;
                 } else if (prop.collapse) {
@@ -120,7 +133,7 @@ export default (props) => {
                     />
                   );
                 }
-              })}
+              })} */}
             </Switch>
           </Suspense>
         </div>
