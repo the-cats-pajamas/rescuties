@@ -1,12 +1,15 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthenticationService } from "../jwt/_services";
+import { Auth } from '../firebase/firebase'
 
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
+export const PrivateRoute =  ({ component: Component, ...rest }) => {
+  console.log('inside PrivateRoute', Component)
+  return ( <Route
     {...rest}
     render={(props) => {
-      const currentUser = AuthenticationService.currentUserValue;
+      // TODO: grab current user from Firebase instead 
+      const currentUser =  Auth.currentUser;
+      console.log('currentUser status', currentUser);
       if (!currentUser) {
         // not logged in so redirect to login page with the return url
         return (
@@ -23,6 +26,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
       return <Component {...props} />;
     }}
   />
-);
+  )
+};
 
 export default PrivateRoute;

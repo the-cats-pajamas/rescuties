@@ -1,77 +1,72 @@
 import React from 'react';
 import {
-    Card,
-    CardBody,
-    CardTitle,
-    Jumbotron,
-    Button,
-    Container
+  Card,
+  CardBody,
+  CardTitle,
+  Jumbotron,
+  Button,
 } from 'reactstrap';
 
-const JumbotronComponent = () => {
-    return (
-        <div>
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Start Inner Div*/}
-            {/* --------------------------------------------------------------------------------*/}
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row*/}
-            {/* --------------------------------------------------------------------------------*/}
-            <Card>
-                <CardTitle className="bg-light border-bottom p-3 mb-0">
-                    <i className="mdi mdi-hamburger mr-2"> </i>
-            Jumbotron
-          </CardTitle>
-                <CardBody className="">
-                    <Jumbotron>
-                        <h1 className="display-3">Hello, world!</h1>
-                        <p className="lead">
-                            This is a simple hero unit, a simple Jumbotron-style component
-                            for calling extra attention to featured content or information.
-              </p>
-                        <hr className="my-2" />
-                        <p>
-                            It uses utility classes for typography and spacing to space
-                            content out within the larger container.
-              </p>
-                        <p className="lead">
-                            <Button color="primary">Learn More</Button>
-                        </p>
-                    </Jumbotron>
-                </CardBody>
-            </Card>
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row*/}
-            {/* --------------------------------------------------------------------------------*/}
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row*/}
-            {/* --------------------------------------------------------------------------------*/}
-            <Card>
-                <CardTitle className="bg-light border-bottom p-3 mb-0">
-                    <i className="mdi mdi-hamburger mr-2"> </i>
-            Fluid Jumbotron
-          </CardTitle>
-                <CardBody className="">
-                    <Jumbotron fluid>
-                        <Container fluid>
-                            <h1 className="display-3">Fluid jumbotron</h1>
-                            <p className="lead">
-                                This is a modified jumbotron that occupies the entire
-                                horizontal space of its parent.
-                </p>
-                        </Container>
-                    </Jumbotron>
-                </CardBody>
-            </Card>
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row*/}
-            {/* --------------------------------------------------------------------------------*/}
+import logo from '../../../assets/logos/logo.png';
+import welcome from '../../../assets/logos/welcome.png';
 
-            {/* --------------------------------------------------------------------------------*/}
-            {/* End Inner Div*/}
-            {/* --------------------------------------------------------------------------------*/}
-        </div>
-    );
-}
+const JumbotronComponent = () => {
+  return (
+    <div>
+      {/* --------------------------------------------------------------------------------*/}
+      {/* Start Inner Div*/}
+      {/* --------------------------------------------------------------------------------*/}
+      {/* --------------------------------------------------------------------------------*/}
+      {/* Row*/}
+      {/* --------------------------------------------------------------------------------*/}
+      <Card>
+        <CardTitle className="bg-dark border-bottom p-3 mb-0">
+            <img
+              src={logo}
+              style={{ height: '125px', padding: '0px' }}
+              alt="homepage"
+              className="dark-logo"
+              />
+          <img
+              src={welcome}
+              style={{ height: '125px', padding: '0px' }}
+              alt="homepage"
+              className="dark-logo"
+              />
+        </CardTitle>
+        <CardBody className="">
+          <Jumbotron>
+            <p className="lead">
+              We are committed to finding loving homes for animals in need. We
+              hope you will find the newest addition to your family on our site.
+              We feature animals in need all around the US. 
+            </p>
+            <hr className="my-2" />
+            <p>
+            If you are considering multiple pets, you can log in or sign up to save pets to your account.
+            </p>
+            <p className="lead">
+              <Button color="primary"><a href='/authentication/login' style={{color:'white'}}>My Account</a></Button>
+            </p>
+          </Jumbotron>
+        </CardBody>
+      </Card>
+      {/* --------------------------------------------------------------------------------*/}
+      {/* Row*/}
+      {/* --------------------------------------------------------------------------------*/}
+      {/* --------------------------------------------------------------------------------*/}
+      {/* Row*/}
+      {/* --------------------------------------------------------------------------------*/}
+
+      {/* --------------------------------------------------------------------------------*/}
+      {/* Row*/}
+      {/* --------------------------------------------------------------------------------*/}
+
+      {/* --------------------------------------------------------------------------------*/}
+      {/* End Inner Div*/}
+      {/* --------------------------------------------------------------------------------*/}
+    </div>
+  );
+};
 
 export default JumbotronComponent;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StepZilla from 'react-stepzilla';
+import getSubmissions from '../../../firebase/database/read-submissions'
 import {
 	Card,
 	CardBody,
@@ -9,16 +10,17 @@ import {
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
-import Step4 from './Step4';
 
 class formSteps extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
+		this.isAdmin = false;
 
 		this.sampleStore = {
 			email: '',
-			gender: '',
+			name: '',
+			phone: '',
 			savedToCloud: false
 		};
 	}
@@ -32,22 +34,23 @@ class formSteps extends Component {
 			...this.sampleStore,
 			...update,
 		}
+		console.log('this.sampleStore is now: ', this.sampleStore);
 	}
-
+	
 	render() {
+		console.log('this.sampleStore is now: ', this.sampleStore);
 		const steps =
 			[
 				{ name: 'Welcome', component: <Step1 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> },
-				{ name: 'Personal Details', component: <Step2 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> },
-				{ name: 'Physical Details', component: <Step3 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> },
-				{ name: 'Done', component: <Step4 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> }
+				{ name: 'About Your Pet', component: <Step2 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> },
+				{ name: 'Done', component: <Step3 getStore={() => (this.getStore())} updateStore={(u) => { this.updateStore(u) }} /> }
 			]
 
 		return (
+			(!this.isAdmin ? 
 			<Card>
 				<CardBody className="border-bottom">
-					<CardTitle className="mb-0"><i className="mdi mdi-border-right mr-2"></i>Form Steps</CardTitle>
-					<h6 className="card-subtitle mb-0 mt-1">Visit for more info https://www.npmjs.com/package/react-stepzilla</h6>
+					<CardTitle className="mb-0"><i className="mdi mdi-paw mr-2"></i>Rehome A Pet</CardTitle>
 				</CardBody>
 				<CardBody>
 					<div className='example'>
@@ -60,6 +63,11 @@ class formSteps extends Component {
 					</div>
 				</CardBody>
 			</Card>
+			: <div>
+				<p>Welcome, admin! </p>
+				{getSubmissions()}
+			</div>
+			)
 
 		)
 	}

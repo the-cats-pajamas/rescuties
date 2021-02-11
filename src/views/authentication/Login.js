@@ -1,242 +1,218 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
   Input,
   CustomInput,
-  FormGroup,
+  Form,
   Row,
   Col,
-  UncontrolledTooltip,
+  Label,
   Button,
 } from "reactstrap";
-import img1 from "../../assets/images/logo-icon.png";
-import img2 from "../../assets/images/background/login-register.jpg";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { AuthenticationService } from "../../jwt/_services";
+import { Auth } from "../../firebase";
+import validators from "./Validators";
+
+import img2 from "../../assets/images/big/auth-bg.jpg";
+
 const sidebarBackground = {
   backgroundImage: "url(" + img2 + ")",
   backgroundRepeat: "no-repeat",
-  backgroundPosition: "bottom center",
+  backgroundPosition: "center center",
 };
 
-const Login = (props) => {
-  const handleClick = () => {
-    var elem = document.getElementById("loginform");
-    elem.style.transition = "all 2s ease-in-out";
-    elem.style.display = "none";
-    document.getElementById("recoverform").style.display = "block";
+const Login2 = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [staySignedIn, setStaySignedIn] = useState(false);
+
+  const onInputChange = (e) => {
+    formValidators([e.target.name], e.target.value);
   };
 
-  return (
-    <div className="">
-      {/*--------------------------------------------------------------------------------*/}
-      {/*Login Cards*/}
-      {/*--------------------------------------------------------------------------------*/}
-      <div
-        className="auth-wrapper d-flex no-block justify-content-center align-items-center"
-        style={sidebarBackground}
-      >
-        <div className="auth-box on-sidebar">
-          <div id="loginform">
-            <div className="logo">
-              <span className="db">
-                <img src={img1} alt="logo" />
-              </span>
-              <h5 className="font-medium mb-3">Sign In to Admin</h5>
-              <div className="alert alert-success">
-                Username: test & Password: test
-              </div>
-            </div>
-            <Row>
-              <Col xs="12">
-                <Formik
-                  initialValues={{
-                    username: "test",
-                    password: "test",
-                  }}
-                  validationSchema={Yup.object().shape({
-                    username: Yup.string().required("Username is required"),
-                    password: Yup.string().required("Password is required"),
-                  })}
-                  onSubmit={(
-                    { username, password },
-                    { setStatus, setSubmitting }
-                  ) => {
-                    setStatus();
-                    AuthenticationService.login(username, password).then(
-                      (user) => {
-                        const { from } = props.location.state || {
-                          from: { pathname: "/" },
-                        };
-                        props.history.push(from);
-                      },
-                      (error) => {
-                        setSubmitting(false);
-                        setStatus(error);
-                      }
-                    );
-                  }}
-                  render={({ errors, status, touched, isSubmitting }) => (
-                    <Form className="mt-3" id="loginform">
-                      <InputGroup className="mb-3">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ti-user"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
+  const formValidators = (fieldName, value) => {
+    validators[fieldName].errors = [];
+    validators[fieldName].state = value;
+    validators[fieldName].valid = true;
+    validators[fieldName].rules.forEach((rule) => {
+      if (rule.test instanceof RegExp) {
+        if (!rule.test.test(value)) {
+          validators[fieldName].errors.push(rule.message);
+          validators[fieldName].valid = false;
+        }
+      } else if (typeof rule.test === "function") {
+        if (!rule.test(value)) {
+          validators[fieldName].errors.push(rule.message);
+          validators[fieldName].valid = false;
+        }
+      }
+    });
+  };
 
-                        <Field
-                          name="username"
-                          type="text"
-                          className={
-                            "form-control" +
-                            (errors.username && touched.username
-                              ? " is-invalid"
-                              : "")
-                          }
-                        />
-                        <ErrorMessage
-                          name="username"
-                          component="div"
-                          className="invalid-feedback"
-                        />
-                      </InputGroup>
-                      <InputGroup className="mb-3">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ti-pencil"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Field
-                          name="password"
-                          type="password"
-                          className={
-                            "form-control" +
-                            (errors.password && touched.password
-                              ? " is-invalid"
-                              : "")
-                          }
-                        />
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className="invalid-feedback"
-                        />
-                      </InputGroup>
-                      <div className="d-flex no-block align-items-center mb-3">
-                        <CustomInput
-                          type="checkbox"
-                          id="exampleCustomCheckbox"
-                          label="Remember Me"
-                        />
-                        <div className="ml-auto">
-                          <a
-                            href="#recoverform"
-                            id="to-recover"
-                            onClick={handleClick.bind(null)}
-                            className="forgot text-dark float-right"
-                          >
-                            <i className="fa fa-lock mr-1"></i> Forgot pwd?
-                          </a>
-                        </div>
-                      </div>
-                      <Row className="mb-3">
-                        <Col xs="12">
-                          <button
-                            type="submit"
-                            className="btn btn-block btn-primary"
-                            disabled={isSubmitting}
-                          >
-                            Login
-                          </button>
-                        </Col>
-                      </Row>
-                      <div className="text-center mb-2">
-                        <div className="social">
-                          <Button
-                            id="UncontrolledTooltipExample1"
-                            className="btn-facebook mr-2"
-                            color="primary"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fab fa-facebook-f"
-                            ></i>
-                          </Button>
-                          <UncontrolledTooltip
-                            placement="top"
-                            target="UncontrolledTooltipExample1"
-                          >
-                            Facebook
-                          </UncontrolledTooltip>
-                          <Button
-                            id="UncontrolledTooltipExample2"
-                            className="btn-googleplus"
-                            color="danger"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fab fa-google-plus-g"
-                            ></i>
-                          </Button>
-                          <UncontrolledTooltip
-                            placement="top"
-                            target="UncontrolledTooltipExample2"
-                          >
-                            Google Plus
-                          </UncontrolledTooltip>
-                        </div>
-                      </div>
-                      {status && (
-                        <div className={"alert alert-danger"}>{status}</div>
-                      )}
-                    </Form>
-                  )}
-                />
-              </Col>
-            </Row>
-          </div>
-          <div id="recoverform">
-            <div className="logo">
-              <span className="db">
-                <img src={img1} alt="logo" />
-              </span>
-              <h5 className="font-medium mb-3">Recover Password</h5>
-              <span>
-                Enter your Email and instructions will be sent to you!
-              </span>
-            </div>
-            <Row className="mt-3">
-              <Col xs="12">
-                <Form action="/dashbaord">
-                  <FormGroup>
+  const validForm = () => {
+    let status = true;
+    Object.keys(validators).forEach((field) => {
+      if (field === "email" || field === "password") {
+        if (!validators[field].valid) {
+          status = false;
+        }
+      }
+    });
+    return status;
+  };
+
+  const showErrors = (fieldName) => {
+    const validator = validators[fieldName];
+    const result = "";
+    if (validator && !validator.valid) {
+      const errors = validator.errors.map((info, index) => {
+        return (
+          <span className="error" key={index}>
+            * {info}
+            <br />
+          </span>
+        );
+      });
+      return <div className="error mb-2">{errors}</div>;
+    }
+    return result;
+  };
+
+  const doLogin = (event) => {
+    const email1 = email;
+    const password1 = password;
+    // console.log('remember me?', staySignedIn);
+    // if(staySignedIn) {
+    //   Auth.rememberMe(email, password)
+    // } 
+    Auth.doSignInWithEmailAndPassword(email1, password1)
+      .then(() => {
+        setEmail(email1);
+        setPassword(password1);
+        props.history.push("/page");
+      })
+      .catch((error) => {
+        alert("Invalid login id or password.");
+      });
+    event.preventDefault();
+  };
+
+  const rememberMe = () => {
+    if(staySignedIn) {
+      setStaySignedIn(false)
+    } else {
+      setStaySignedIn(true);
+    }
+  }
+
+  return (
+    <div
+      className="auth-wrapper  align-items-center d-flex"
+      style={sidebarBackground}
+    >
+      {/*--------------------------------------------------------------------------------*/}
+      {/*Login2 Cards*/}
+      {/*--------------------------------------------------------------------------------*/}
+      <div className="container">
+        <div>
+          <Row className="no-gutters justify-content-center">
+            <Col md="6" lg="4" className="bg-dark text-white">
+              <div className="p-4">
+                <h2 className="display-5">
+                  Hi,
+                  <br /> <span className="text-cyan font-bold">Pet Lover</span>
+                </h2>
+              </div>
+            </Col>
+            <Col md="6" lg="4" className="bg-white">
+              <div className="p-4">
+                <h3 className="font-medium mb-3">Sign In to Admin</h3>
+                <Form className="mt-3" id="loginform" action="/dashbaord">
+                  <Label for="email" className="font-medium">
+                    Email
+                  </Label>
+                  <InputGroup className="mb-2" size="lg">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ti-user"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
                     <Input
-                      type="text"
-                      name="uname"
-                      bsSize="lg"
-                      id="Name"
-                      placeholder="Username"
-                      required
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        onInputChange(e);
+                      }}
+                      placeholder="Email"
                     />
-                  </FormGroup>
-                  <Row className="mt-3">
+                  </InputGroup>
+                  {showErrors("email")}
+                  <Label for="password" className="mt-3 font-medium">
+                    Password
+                  </Label>
+                  <InputGroup className="mb-3" size="lg">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ti-pencil"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        onInputChange(e);
+                      }}
+                      placeholder="Password"
+                    />
+                  </InputGroup>
+                  {showErrors("password")}
+                  <div className="d-flex no-block align-items-center mb-4 mt-4">
+                    <CustomInput
+                      // add a click method to say true or false for persistence 
+                      onClick = {e => rememberMe()}
+                      type="checkbox"
+                      id="exampleCustomCheckbox"
+                      label="Remember Me"
+                    />
+                  </div>
+                  <Row className="mb-3">
                     <Col xs="12">
-                      <Button color="danger" size="lg" type="submit" block>
-                        Reset
+                      <Button
+                        color="primary"
+                        onClick={(event) => doLogin(event)}
+                        className={`${validForm() ? "" : "disabled"}`}
+                        size="lg"
+                        type="submit"
+                        block
+                      >
+                        Log In
                       </Button>
                     </Col>
                   </Row>
+                  <div className="text-center">
+                    Don&apos;t have an account?{" "}
+                    <a
+                      href="/authentication/register"
+                      className="text-info ml-1"
+                    >
+                      <b>Sign Up</b>
+                    </a>
+                  </div>
                 </Form>
-              </Col>
-            </Row>
-          </div>
+              </div>
+            </Col>
+          </Row>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Login2;
