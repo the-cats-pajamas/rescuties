@@ -20,29 +20,38 @@ export const showFilterHandler = (type, filterCondition) => {
     }
 }
 
-function validateToken(token) {
+async function validateToken() {
   try {
-    if (!token) getNewToken();
+    if (localStorage.getItem('token') === null){
+      console.log('no token in local storage!');
+      await getNewToken();
+    } 
+    else {
+    let token = localStorage.getItem('token');
     let jwt = JSON.parse(atob(token.split('.')[1]));
     console.log('jwt expires at', new Date(jwt.exp));
     if (jwt.exp > Date.now()) {
       console.log('expired token');
-      getNewToken();
+      localStorage.removeItem('token');
+      await getNewToken();
     }
     if (jwt.exp < Date.now()) console.log('valid token');
+  }
   } catch (e) {
     return null;
   }
 }
 
-function getNewToken() {
+async function getNewToken() {
+  console.log('getting new token!');
   try {
-    superagent
+    await superagent
       .post('https://api.petfinder.com/v2/oauth2/token')
       .send({ grant_type: 'client_credentials' })
       .send({ client_id: id })
-      .send({ client_securet: secret })
+      .send({ client_secret: secret })
       .then(results => {
+        console.log('got some results back!')
         let newToken = results.body.access_token;
         localStorage.setItem('token', JSON.stringify(newToken));
         return newToken;
@@ -54,7 +63,7 @@ function getNewToken() {
 
 export const get = () => async dispatch => {
   await validateToken();
-  const token = JSON.parse(localStorage.getItem('token'));
+  let token = JSON.parse(localStorage.getItem('token'));
   return superagent
     .get('https://api.petfinder.com/v2/animals?page=2')
     .auth(token, { type: 'bearer' })
